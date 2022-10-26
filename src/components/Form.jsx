@@ -14,7 +14,7 @@ export default class Form extends Component {
         <MyInput type="text" id="image-input" name="Image" />
         <label htmlFor="rarity">
           <span className="genericLabel">Raridade</span>
-          <select name="rarity" data-testid="rare-input">
+          <select name="rarity" id="rarity" data-testid="rare-input">
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
             <option value="muito raro">Muito Raro</option>
@@ -22,6 +22,7 @@ export default class Form extends Component {
         </label>
         <label htmlFor="trunfo-input">
           <input type="checkbox" data-testid="trunfo-input" id="trunfo-input" />
+          Super Trybe Trunfo
         </label>
         <button type="submit" data-testid="save-button">Salvar</button>
       </form>
