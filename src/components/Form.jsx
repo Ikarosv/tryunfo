@@ -22,7 +22,7 @@ export default class Form extends Component {
         <MyInput
           type="text"
           id="name-input"
-          name="Name"
+          name="cardName"
           value={ cardName }
           onChange={ onInputChange }
         />
@@ -30,7 +30,7 @@ export default class Form extends Component {
         <MyInput
           type="textarea"
           id="description-input"
-          name="Description"
+          name="cardDescription"
           value={ cardDescription }
           onChange={ onInputChange }
         />
@@ -38,21 +38,21 @@ export default class Form extends Component {
         <MyInput
           type="number"
           id="attr1-input"
-          name="Attr1"
+          name="cardAttr1"
           value={ cardAttr1 }
           onChange={ onInputChange }
         />
         <MyInput
           type="number"
           id="attr2-input"
-          name="Attr2"
+          name="cardAttr2"
           value={ cardAttr2 }
           onChange={ onInputChange }
         />
         <MyInput
           type="number"
           id="attr3-input"
-          name="Attr3"
+          name="cardAttr3"
           value={ cardAttr3 }
           onChange={ onInputChange }
         />
@@ -60,7 +60,7 @@ export default class Form extends Component {
         <MyInput
           type="text"
           id="image-input"
-          name="Image"
+          name="cardImage"
           value={ cardImage }
           onChange={ onInputChange }
         />
@@ -68,9 +68,9 @@ export default class Form extends Component {
         <label htmlFor="rarity">
           <span className="genericLabel">Raridade</span>
           <select
-            name="rarity"
             id="rarity"
             data-testid="rare-input"
+            name="cardRare"
             value={ cardRare }
             onChange={ onInputChange }
           >
@@ -83,7 +83,7 @@ export default class Form extends Component {
           <input
             type="checkbox"
             data-testid="trunfo-input"
-            name="trunfoInput"
+            name="cardTrunfo"
             id="trunfo-input"
             checked={ cardTrunfo }
             onChange={ onInputChange }
@@ -93,7 +93,7 @@ export default class Form extends Component {
         <button
           type="submit"
           data-testid="save-button"
-          name="saveButton"
+          name="isSaveButtonDisabled"
           onClick={ onSaveButtonClick }
           disabled={ isSaveButtonDisabled }
         >
