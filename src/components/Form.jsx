@@ -3,6 +3,33 @@ import React, { Component } from 'react';
 import MyInput from './Input';
 
 export default class Form extends Component {
+  renderButton = () => {
+    const { isSaveButtonDisabled, onSaveButtonClick } = this.props;
+    if (isSaveButtonDisabled) {
+      return (
+        <button
+          type="submit"
+          data-testid="save-button"
+          name="isSaveButtonDisabled"
+          onClick={ onSaveButtonClick }
+          disabled
+        >
+          Salvar
+        </button>
+      );
+    }
+    return (
+      <button
+        type="submit"
+        data-testid="save-button"
+        name="isSaveButtonDisabled"
+        onClick={ onSaveButtonClick }
+      >
+        Salvar
+      </button>
+    );
+  };
+
   render() {
     const {
       cardName,
@@ -13,8 +40,6 @@ export default class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      onSaveButtonClick,
-      isSaveButtonDisabled,
       onInputChange,
     } = this.props;
     return (
@@ -25,6 +50,7 @@ export default class Form extends Component {
           name="cardName"
           value={ cardName }
           onChange={ onInputChange }
+          required
         />
 
         <MyInput
@@ -33,6 +59,7 @@ export default class Form extends Component {
           name="cardDescription"
           value={ cardDescription }
           onChange={ onInputChange }
+          required
         />
 
         <MyInput
@@ -41,6 +68,8 @@ export default class Form extends Component {
           name="cardAttr1"
           value={ cardAttr1 }
           onChange={ onInputChange }
+          max={ 90 }
+          min={ 1 }
         />
         <MyInput
           type="number"
@@ -48,6 +77,8 @@ export default class Form extends Component {
           name="cardAttr2"
           value={ cardAttr2 }
           onChange={ onInputChange }
+          max={ 90 }
+          min={ 1 }
         />
         <MyInput
           type="number"
@@ -55,6 +86,8 @@ export default class Form extends Component {
           name="cardAttr3"
           value={ cardAttr3 }
           onChange={ onInputChange }
+          max={ 90 }
+          min={ 1 }
         />
 
         <MyInput
@@ -63,6 +96,7 @@ export default class Form extends Component {
           name="cardImage"
           value={ cardImage }
           onChange={ onInputChange }
+          required
         />
 
         <label htmlFor="rarity">
@@ -73,7 +107,9 @@ export default class Form extends Component {
             name="cardRare"
             value={ cardRare }
             onChange={ onInputChange }
+            required
           >
+            <option value="">Selecione uma raridade</option>
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
             <option value="muito raro">Muito Raro</option>
@@ -90,15 +126,7 @@ export default class Form extends Component {
           />
           Super Trybe Trunfo
         </label>
-        <button
-          type="submit"
-          data-testid="save-button"
-          name="isSaveButtonDisabled"
-          onClick={ onSaveButtonClick }
-          disabled={ isSaveButtonDisabled }
-        >
-          Salvar
-        </button>
+        { this.renderButton() }
       </form>
     );
   }

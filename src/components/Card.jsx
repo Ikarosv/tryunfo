@@ -19,6 +19,7 @@ export default class Card extends Component {
       cardImage,
       cardRare,
     } = this.props;
+
     return (
       <section>
         <h4 data-testid="name-card">{cardName}</h4>
