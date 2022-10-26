@@ -8,7 +8,7 @@ export default class Form extends Component {
     if (isSaveButtonDisabled) {
       return (
         <button
-          type="submit"
+          type="button"
           data-testid="save-button"
           name="isSaveButtonDisabled"
           onClick={ onSaveButtonClick }
@@ -20,7 +20,7 @@ export default class Form extends Component {
     }
     return (
       <button
-        type="submit"
+        type="button"
         data-testid="save-button"
         name="isSaveButtonDisabled"
         onClick={ onSaveButtonClick }
@@ -109,10 +109,10 @@ export default class Form extends Component {
             onChange={ onInputChange }
             required
           >
-            <option value="">Selecione uma raridade</option>
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
             <option value="muito raro">Muito Raro</option>
+            <option value="" selected>Selecione uma raridade</option>
           </select>
         </label>
         <label htmlFor="trunfo-input">
