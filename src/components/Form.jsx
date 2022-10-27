@@ -3,32 +3,27 @@ import React, { Component } from 'react';
 import MyInput from './Input';
 
 export default class Form extends Component {
-  // renderButton = () => {
-  //   const { isSaveButtonDisabled, onSaveButtonClick } = this.props;
-  //   if (isSaveButtonDisabled) {
-  //     return (
-  //       <button
-  //         type="button"
-  //         data-testid="save-button"
-  //         name="isSaveButtonDisabled"
-  //         onClick={ onSaveButtonClick }
-  //         disabled
-  //       >
-  //         Salvar
-  //       </button>
-  //     );
-  //   }
-  //   return (
-  //     <button
-  //       type="button"
-  //       data-testid="save-button"
-  //       name="isSaveButtonDisabled"
-  //       onClick={ onSaveButtonClick }
-  //     >
-  //       Salvar
-  //     </button>
-  //   );
-  // };
+  hasCardTrunfo = () => {
+    const { cardTrunfo, onInputChange, hasTrunfo } = this.props;
+    if (!hasTrunfo) {
+      return (
+        <label htmlFor="trunfo-input">
+          <input
+            type="checkbox"
+            data-testid="trunfo-input"
+            name="cardTrunfo"
+            id="trunfo-input"
+            checked={ cardTrunfo }
+            onChange={ onInputChange }
+          />
+          Super Trybe Trunfo
+        </label>
+      );
+    }
+    return (
+      <span>Você já tem um Super Trunfo em seu baralho</span>
+    );
+  };
 
   render() {
     const {
@@ -39,7 +34,6 @@ export default class Form extends Component {
       cardAttr3,
       cardImage,
       cardRare,
-      cardTrunfo,
       onSaveButtonClick,
       isSaveButtonDisabled,
       onInputChange,
@@ -116,17 +110,7 @@ export default class Form extends Component {
             <option value="muito raro">Muito Raro</option>
           </select>
         </label>
-        <label htmlFor="trunfo-input">
-          <input
-            type="checkbox"
-            data-testid="trunfo-input"
-            name="cardTrunfo"
-            id="trunfo-input"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-          Super Trybe Trunfo
-        </label>
+        { this.hasCardTrunfo() }
         <button
           type="button"
           data-testid="save-button"

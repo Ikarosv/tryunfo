@@ -11,9 +11,33 @@ class App extends React.Component {
     cardAttr3: '0',
     cardImage: '',
     cardRare: 'Normal',
-    cardTrunfo: '',
+    cardTrunfo: false,
+    hasTrunfo: false,
     isSaveButtonDisabled: true,
     savedCarts: [],
+  };
+
+  activateButton = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardImage,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+    } = this.state;
+    const isInputsEmpty = this.isEmpty(cardName, cardDescription, cardImage);
+
+    const maxTotalSum = 210;
+    const maxAttr = 90;
+    const minAttr = 0;
+    const allAttr = this.greaterThan(maxAttr, minAttr, cardAttr1, cardAttr2, cardAttr3);
+
+    const totalSum = (parseInt(cardAttr1, 10)
+      + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10)) > maxTotalSum;
+
+    const isSaveButtonDisabled = allAttr || totalSum || isInputsEmpty;
+    this.setState({ isSaveButtonDisabled });
   };
 
   onInputChange = async ({ target }) => {
@@ -21,28 +45,7 @@ class App extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     await this.setState({
       [name]: value,
-    }, () => {
-      const {
-        cardName,
-        cardDescription,
-        cardImage,
-        cardAttr1,
-        cardAttr2,
-        cardAttr3,
-      } = this.state;
-      const isInputsEmpty = this.isEmpty(cardName, cardDescription, cardImage);
-
-      const maxTotalSum = 210;
-      const maxAttr = 90;
-      const minAttr = 0;
-      const allAttr = this.greaterThan(maxAttr, minAttr, cardAttr1, cardAttr2, cardAttr3);
-
-      const totalSum = (parseInt(cardAttr1, 10)
-      + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10)) > maxTotalSum;
-
-      const isSaveButtonDisabled = allAttr || totalSum || isInputsEmpty;
-      this.setState({ isSaveButtonDisabled });
-    });
+    }, this.activateButton);
   };
 
   isEmpty = (...props) => props.some((prop) => !prop.length);
@@ -56,6 +59,7 @@ class App extends React.Component {
       cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage,
       cardRare, cardTrunfo, savedCarts,
+      hasTrunfo,
     }) => ({
       savedCarts: [...savedCarts, {
         cardName,
@@ -67,18 +71,16 @@ class App extends React.Component {
         cardRare,
         cardTrunfo,
       }],
-    }), () => {
-      this.setState({
-        cardName: '',
-        cardDescription: '',
-        cardAttr1: '0',
-        cardAttr2: '0',
-        cardAttr3: '0',
-        cardImage: '',
-        cardRare: 'normal',
-        cardTrunfo: '',
-      });
-    });
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: '',
+      hasTrunfo: cardTrunfo && !hasTrunfo,
+    }), this.activateButton);
   };
 
   render() {
@@ -91,6 +93,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
     } = this.state;
 
@@ -103,6 +106,7 @@ class App extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      hasTrunfo,
     };
 
     return (
