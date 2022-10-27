@@ -1,0 +1,6 @@
+.form {
+  flex-grow: 1;
+  min-width: 200px;
+  position: relative;
+  width: 100%;
+}

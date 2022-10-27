@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import './styles/Card.css';
 
 export default class Card extends Component {
   isSuperTrunfo = () => {
@@ -17,6 +18,7 @@ export default class Card extends Component {
           type="button"
           onClick={ () => excludeFuncButton(index, cardTrunfo) }
           data-testid="delete-button"
+          className="delete-button"
         >
           Excluir
         </button>
@@ -37,7 +39,7 @@ export default class Card extends Component {
 
     return (
       <section>
-        <div>
+        <div className="card">
           <h4 data-testid="name-card">{cardName}</h4>
           <img
             src={ cardImage }

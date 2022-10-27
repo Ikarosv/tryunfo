@@ -1,0 +1,22 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.form-preview {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1124px;
+  min-width: 310px;
+  padding: 100px 41px;
+}
+
+@media ( max-width : 320px ) {
+
+  .form-preview {
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 100px 10px;
+  }
+}

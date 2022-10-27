@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import MyInput from './Input';
+import './styles/GeneralStyles.css';
+import './styles/Form.css';
 
 export default class Form extends Component {
   hasCardTrunfo = () => {
@@ -38,14 +40,19 @@ export default class Form extends Component {
       isSaveButtonDisabled,
       onInputChange,
     } = this.props;
+
+    const maxAttr = 90;
+    const minAttr = 0;
+
     return (
-      <form action="">
+      <form action="" className="flex-column space-between-align-center form">
         <MyInput
           type="text"
           id="name-input"
           name="cardName"
           value={ cardName }
           onChange={ onInputChange }
+          labelName="Nome"
           required
         />
 
@@ -55,6 +62,7 @@ export default class Form extends Component {
           name="cardDescription"
           value={ cardDescription }
           onChange={ onInputChange }
+          labelName="Descrição"
           required
         />
 
@@ -64,8 +72,9 @@ export default class Form extends Component {
           name="cardAttr1"
           value={ cardAttr1 }
           onChange={ onInputChange }
-          max={ 90 }
-          min={ 1 }
+          labelName="Força"
+          max={ maxAttr }
+          min={ minAttr }
         />
         <MyInput
           type="number"
@@ -73,8 +82,9 @@ export default class Form extends Component {
           name="cardAttr2"
           value={ cardAttr2 }
           onChange={ onInputChange }
-          max={ 90 }
-          min={ 1 }
+          labelName="Vida"
+          max={ maxAttr }
+          min={ minAttr }
         />
         <MyInput
           type="number"
@@ -82,21 +92,23 @@ export default class Form extends Component {
           name="cardAttr3"
           value={ cardAttr3 }
           onChange={ onInputChange }
-          max={ 90 }
-          min={ 1 }
+          labelName="Mana"
+          max={ maxAttr }
+          min={ minAttr }
         />
 
         <MyInput
-          type="text"
+          type="url"
           id="image-input"
           name="cardImage"
           value={ cardImage }
           onChange={ onInputChange }
+          labelName="Imagem"
           required
         />
 
         <label htmlFor="rarity">
-          <span className="genericLabel">Raridade</span>
+          <span>Raridade</span>
           <select
             id="rarity"
             data-testid="rare-input"
@@ -110,15 +122,17 @@ export default class Form extends Component {
             <option value="muito raro">Muito Raro</option>
           </select>
         </label>
-        { this.hasCardTrunfo() }
-        <button
-          type="button"
-          data-testid="save-button"
-          onClick={ onSaveButtonClick }
-          disabled={ isSaveButtonDisabled }
-        >
-          Salvar
-        </button>
+        <div className="flex">
+          { this.hasCardTrunfo() }
+          <button
+            type="button"
+            data-testid="save-button"
+            onClick={ onSaveButtonClick }
+            disabled={ isSaveButtonDisabled }
+          >
+            Salvar
+          </button>
+        </div>
       </form>
     );
   }

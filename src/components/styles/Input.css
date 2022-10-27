@@ -1,0 +1,96 @@
+.inputLabel {
+  font-size: 16px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  position: relative;
+  width: 80%;
+}
+
+.defaultInput {
+  border: none;
+  color: #595f6e;
+  max-width: 365px;
+  min-width: 200px;
+  outline: none;
+  padding-top: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.inputText {
+  font-size: 16px;
+  height: 40px;
+}
+
+.inputTextarea {
+  padding-top: 16px;
+}
+
+.defaultInput::placeholder {
+  color: transparent;
+}
+
+.parentDiv {
+  border-bottom: 1px solid #3d495c;
+  bottom: 0;
+  height: 100%;
+  left: 0%;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.parentDiv:after {
+  border-bottom: 2px solid rgb(98, 98, 255);
+  bottom: -1px;
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  transform: translateX(-100%);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.genericLabel {
+  bottom: 5.3px;
+  left: 0;
+  position: absolute;
+  transition: all 0.3s ease;
+}
+
+.defaultInput:focus + .parentDiv .genericLabel {
+  color: rgb(98, 98, 255);
+  font-size: 14px;
+  top: 0;
+}
+
+.defaultInput:valid + .parentDiv:after {
+  border-color: green;
+  transform: translateX(0%);
+}
+
+.defaultInput:valid + .parentDiv .genericLabel {
+  color: green;
+  font-size: 14px;
+  top: 0;
+}
+
+.defaultInput:not( :placeholder-shown ):invalid + .parentDiv .genericLabel {
+  color: red;
+  font-size: 14px;
+  top: 0;
+}
+
+.noResize {
+  resize: none;
+}
+
+.defaultInput:focus + .parentDiv:after {
+  transform: translateX(0%);
+}
+
+.defaultInput:not( :placeholder-shown ):invalid + .parentDiv:after {
+  border-color: 2px solid red;
+  transform: translateX(0%);
+}

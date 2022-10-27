@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
+import './components/styles/GeneralStyles.css';
+import './components/styles/App.css';
 
 class App extends React.Component {
   state = {
@@ -120,7 +122,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Tryunfo</h1>
-        <section>
+        <section className="container form-preview">
           <Form
             { ...defaultProps }
             onSaveButtonClick={ this.onSaveButtonClick }
