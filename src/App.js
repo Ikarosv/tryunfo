@@ -46,7 +46,9 @@ class App extends React.Component {
 
   isEmpty = (...props) => props.some((prop) => !prop.length);
 
-  greaterThan = (maxV, minV, ...attrs) => attrs.some((attr) => attr < minV || attr > maxV);
+  greaterThan = (maxV, minV, ...attrs) => (
+    attrs.some((attr) => attr < minV || attr > maxV)
+  );
 
   onSaveButtonClick = () => {
     // event.preventDefault();
@@ -65,33 +67,29 @@ class App extends React.Component {
       cardTrunfo,
       isSaveButtonDisabled,
     } = this.state;
+
+    const defaultProps = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+
     return (
       <div>
         <h1>Tryunfo</h1>
         <section>
           <Form
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
+            { ...defaultProps }
             onSaveButtonClick={ this.onSaveButtonClick }
             isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ this.onInputChange }
           />
-          <Card
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-          />
+          <Card { ...defaultProps } />
         </section>
       </div>
     );
