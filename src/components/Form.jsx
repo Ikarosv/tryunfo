@@ -3,32 +3,32 @@ import React, { Component } from 'react';
 import MyInput from './Input';
 
 export default class Form extends Component {
-  renderButton = () => {
-    const { isSaveButtonDisabled, onSaveButtonClick } = this.props;
-    if (isSaveButtonDisabled) {
-      return (
-        <button
-          type="button"
-          data-testid="save-button"
-          name="isSaveButtonDisabled"
-          onClick={ onSaveButtonClick }
-          disabled
-        >
-          Salvar
-        </button>
-      );
-    }
-    return (
-      <button
-        type="button"
-        data-testid="save-button"
-        name="isSaveButtonDisabled"
-        onClick={ onSaveButtonClick }
-      >
-        Salvar
-      </button>
-    );
-  };
+  // renderButton = () => {
+  //   const { isSaveButtonDisabled, onSaveButtonClick } = this.props;
+  //   if (isSaveButtonDisabled) {
+  //     return (
+  //       <button
+  //         type="button"
+  //         data-testid="save-button"
+  //         name="isSaveButtonDisabled"
+  //         onClick={ onSaveButtonClick }
+  //         disabled
+  //       >
+  //         Salvar
+  //       </button>
+  //     );
+  //   }
+  //   return (
+  //     <button
+  //       type="button"
+  //       data-testid="save-button"
+  //       name="isSaveButtonDisabled"
+  //       onClick={ onSaveButtonClick }
+  //     >
+  //       Salvar
+  //     </button>
+  //   );
+  // };
 
   render() {
     const {
@@ -40,6 +40,8 @@ export default class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      onSaveButtonClick,
+      isSaveButtonDisabled,
       onInputChange,
     } = this.props;
     return (
@@ -112,7 +114,6 @@ export default class Form extends Component {
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
             <option value="muito raro">Muito Raro</option>
-            <option value="" selected>Selecione uma raridade</option>
           </select>
         </label>
         <label htmlFor="trunfo-input">
@@ -126,7 +127,14 @@ export default class Form extends Component {
           />
           Super Trybe Trunfo
         </label>
-        { this.renderButton() }
+        <button
+          type="button"
+          data-testid="save-button"
+          onClick={ onSaveButtonClick }
+          disabled={ isSaveButtonDisabled }
+        >
+          Salvar
+        </button>
       </form>
     );
   }

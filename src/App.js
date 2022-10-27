@@ -6,57 +6,51 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '1',
-    cardAttr2: '1',
-    cardAttr3: '1',
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
     cardImage: '',
-    cardRare: '',
+    cardRare: 'Normal',
     cardTrunfo: '',
     isSaveButtonDisabled: true,
   };
 
-  activateButton = () => {
-    const {
-      cardName,
-      cardDescription,
-      cardImage,
-      cardRare,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-    } = this.state;
+  onInputChange = async ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    await this.setState({
+      [name]: value,
+    }, () => {
+      const {
+        cardName,
+        cardDescription,
+        cardImage,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+      } = this.state;
+      const isInputsEmpty = this.isEmpty(cardName, cardDescription, cardImage);
 
-    const maxSum = 210;
-    const allAttr = (Number(cardAttr1)
-    + Number(cardAttr2)
-    + Number(cardAttr3)) < maxSum;
+      const maxTotalSum = 210;
+      const maxAttr = 90;
+      const minAttr = 0;
+      const allAttr = this.greaterThan(maxAttr, minAttr, cardAttr1, cardAttr2, cardAttr3);
 
-    if (
-      this.isEmpty(cardName, cardDescription, cardImage, cardRare)
-      && allAttr) {
-      this.setState({
-        isSaveButtonDisabled: false,
-      });
-      return;
-    }
-    this.setState({
-      isSaveButtonDisabled: true,
+      const totalSum = (parseInt(cardAttr1, 10)
+      + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10)) > maxTotalSum;
+
+      const isSaveButtonDisabled = allAttr || totalSum || isInputsEmpty;
+      this.setState({ isSaveButtonDisabled });
     });
   };
 
-  onInputChange = ({ target }) => {
-    const { name } = target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({
-      [name]: value,
-    }, this.activateButton);
-  };
+  isEmpty = (...props) => props.some((prop) => !prop.length);
 
-  isEmpty = (...props) => props.every((prop) => prop.length);
+  greaterThan = (maxV, minV, ...attrs) => attrs.some((attr) => attr < minV || attr > maxV);
 
-  onSaveButtonClick = (event) => {
-    event.preventDefault();
-    console.log('a');
+  onSaveButtonClick = () => {
+    // event.preventDefault();
+    // console.log('a');
   };
 
   render() {
