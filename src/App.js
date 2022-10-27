@@ -95,6 +95,7 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       isSaveButtonDisabled,
+      savedCarts,
     } = this.state;
 
     const defaultProps = {
@@ -120,6 +121,13 @@ class App extends React.Component {
             onInputChange={ this.onInputChange }
           />
           <Card { ...defaultProps } />
+        </section>
+        <section>
+          {
+            savedCarts.map((infoCard, index) => (
+              <Card key={ infoCard.cardName + index } { ...infoCard } />
+            ))
+          }
         </section>
       </div>
     );
