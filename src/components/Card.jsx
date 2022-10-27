@@ -9,6 +9,21 @@ export default class Card extends Component {
     }
   };
 
+  renderButton = () => {
+    const { index, excludeFuncButton, cardTrunfo } = this.props;
+    if (index >= 0) {
+      return (
+        <button
+          type="button"
+          onClick={ () => excludeFuncButton(index, cardTrunfo) }
+          data-testid="delete-button"
+        >
+          Excluir
+        </button>
+      );
+    }
+  };
+
   render() {
     const {
       cardName,
@@ -22,18 +37,21 @@ export default class Card extends Component {
 
     return (
       <section>
-        <h4 data-testid="name-card">{cardName}</h4>
-        <img
-          src={ cardImage }
-          alt={ cardName }
-          data-testid="image-card"
-        />
-        <p data-testid="description-card">{cardDescription}</p>
-        <h5 data-testid="attr1-card">{cardAttr1}</h5>
-        <h5 data-testid="attr2-card">{cardAttr2}</h5>
-        <h5 data-testid="attr3-card">{cardAttr3}</h5>
-        <span data-testid="rare-card">{cardRare}</span>
-        {this.isSuperTrunfo()}
+        <div>
+          <h4 data-testid="name-card">{cardName}</h4>
+          <img
+            src={ cardImage }
+            alt={ cardName }
+            data-testid="image-card"
+          />
+          <p data-testid="description-card">{cardDescription}</p>
+          <h5 data-testid="attr1-card">{cardAttr1}</h5>
+          <h5 data-testid="attr2-card">{cardAttr2}</h5>
+          <h5 data-testid="attr3-card">{cardAttr3}</h5>
+          <span data-testid="rare-card">{cardRare}</span>
+          {this.isSuperTrunfo()}
+        </div>
+        { this.renderButton() }
       </section>
     );
   }
@@ -49,3 +67,13 @@ Card.propTypes = {
   cardRare: PropTypes.string,
   cardTrunfo: PropTypes.bool,
 }.isRequired;
+
+Card.propTypes = {
+  index: PropTypes.number,
+  excludeFuncButton: PropTypes.func,
+};
+
+Card.defaultProps = {
+  index: (0 - 1),
+  excludeFuncButton: () => {},
+};

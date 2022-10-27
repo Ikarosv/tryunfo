@@ -40,6 +40,13 @@ class App extends React.Component {
     this.setState({ isSaveButtonDisabled });
   };
 
+  excludeFuncButton = (index, cardTrunfo) => {
+    const { savedCarts } = this.state;
+    const newArr = savedCarts;
+    newArr.splice(index, 1);
+    this.setState({ savedCarts: newArr, hasTrunfo: !cardTrunfo });
+  };
+
   onInputChange = async ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -125,7 +132,12 @@ class App extends React.Component {
         <section>
           {
             savedCarts.map((infoCard, index) => (
-              <Card key={ infoCard.cardName + index } { ...infoCard } />
+              <Card
+                key={ infoCard.cardName + index }
+                { ...infoCard }
+                index={ index }
+                excludeFuncButton={ this.excludeFuncButton }
+              />
             ))
           }
         </section>
