@@ -20,6 +20,7 @@ class App extends React.Component {
     inputFilter: '',
     filteredCards: [],
     filterRare: 'todas',
+    trunfoFilter: false,
   };
 
   activateButton = () => {
@@ -118,6 +119,7 @@ class App extends React.Component {
       inputFilter,
       filteredCards,
       filterRare,
+      trunfoFilter,
     } = this.state;
 
     const defaultProps = {
@@ -135,7 +137,8 @@ class App extends React.Component {
     let cardsRender = inputFilter.length ? filteredCards : savedCarts;
     cardsRender = filterRare === 'todas' ? cardsRender : (
       cardsRender.filter((card) => card.cardRare === filterRare));
-
+    cardsRender = trunfoFilter
+      ? [savedCarts.find((card) => card.cardTrunfo)] : cardsRender;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -162,18 +165,31 @@ class App extends React.Component {
               name="inputFilter"
               onChange={ this.filterCards }
               data-testid="name-filter"
+              disabled={ trunfoFilter }
             />
             <select
               data-testid="rare-filter"
               name="filterRare"
               value={ filterRare }
               onChange={ this.onInputChange }
+              disabled={ trunfoFilter }
             >
               <option value="todas">Todas</option>
               <option value="normal">Normal</option>
               <option value="raro">Raro</option>
               <option value="muito raro">Muito Raro</option>
             </select>
+            <label htmlFor="trunfoFilter">
+              <input
+                type="checkbox"
+                data-testid="trunfo-filter"
+                id="trunfoFilter"
+                name="trunfoFilter"
+                checked={ trunfoFilter }
+                onChange={ this.onInputChange }
+              />
+              Super Trunfo
+            </label>
           </section>
           <section className="flex-wrap fullCards">
             {
