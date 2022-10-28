@@ -35,11 +35,12 @@ export default class Card extends Component {
       cardAttr3,
       cardImage,
       cardRare,
+      className,
     } = this.props;
 
     return (
       <section>
-        <div className="card">
+        <div className={ className }>
           <h4 data-testid="name-card">{cardName}</h4>
           <img
             src={ cardImage }
@@ -73,9 +74,11 @@ Card.propTypes = {
 Card.propTypes = {
   index: PropTypes.number,
   excludeFuncButton: PropTypes.func,
+  className: PropTypes.string,
 };
 
 Card.defaultProps = {
   index: (0 - 1),
   excludeFuncButton: () => {},
+  className: 'card',
 };

@@ -4,7 +4,7 @@ import './styles/Input.css';
 
 export default class MyInput extends Component {
   render() {
-    const { id, name, type, value, onChange, required, max, min, labelName } = this.props;
+    const { id, name, type, value, onChange, required, max, min, labelname } = this.props;
     const defaultProps = {
       id,
       name,
@@ -14,7 +14,7 @@ export default class MyInput extends Component {
       required,
       max,
       min,
-      labelName,
+      labelname,
     };
 
     return (
@@ -22,17 +22,19 @@ export default class MyInput extends Component {
         {
           type === 'textarea' ? <textarea
             { ...defaultProps }
-            placeholder={ labelName }
+            placeholder={ labelname }
+            data-testid={ id }
             className="defaultInput inputTextarea noResize"
             rows={ 4 }
           /> : <input
             className="defaultInput inputText"
-            placeholder={ labelName }
+            placeholder={ labelname }
+            data-testid={ id }
             { ...defaultProps }
           />
         }
         <div className="parentDiv">
-          <span className="genericLabel">{labelName}</span>
+          <span className="genericLabel">{labelname}</span>
         </div>
       </label>
     );
@@ -44,7 +46,7 @@ MyInput.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  labelName: PropTypes.string.isRequired,
+  labelname: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   required: PropTypes.bool,
   max: PropTypes.number,

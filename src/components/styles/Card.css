@@ -1,3 +1,11 @@
 .card {
-  width: 320px;
+  height: 534px;
+  text-align: center;
+  width: 358px;
+}
+
+.deckCard {
+  height: 100%;
+  text-align: center;
+  width: 358px;
 }

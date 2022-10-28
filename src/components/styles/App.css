@@ -1,22 +1,33 @@
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .form-preview {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   max-width: 1124px;
   min-width: 310px;
-  padding: 100px 41px;
+  padding: 41px 100px;
+  text-align: center;
+  width: 100%;
 }
 
-@media ( max-width : 320px ) {
+.addNewCard {
+  width: 100%;
+}
+
+@media ( max-width : 425px ) {
 
   .form-preview {
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     padding: 100px 10px;
   }
+}
+
+.fullCards {
+  height: fit-content;
+  min-height: 400px;
 }

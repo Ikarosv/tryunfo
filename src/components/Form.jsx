@@ -52,7 +52,7 @@ export default class Form extends Component {
           name="cardName"
           value={ cardName }
           onChange={ onInputChange }
-          labelName="Nome"
+          labelname="Nome"
           required
         />
 
@@ -62,7 +62,7 @@ export default class Form extends Component {
           name="cardDescription"
           value={ cardDescription }
           onChange={ onInputChange }
-          labelName="Descrição"
+          labelname="Descrição"
           required
         />
 
@@ -72,7 +72,7 @@ export default class Form extends Component {
           name="cardAttr1"
           value={ cardAttr1 }
           onChange={ onInputChange }
-          labelName="Força"
+          labelname="Força"
           max={ maxAttr }
           min={ minAttr }
         />
@@ -82,7 +82,7 @@ export default class Form extends Component {
           name="cardAttr2"
           value={ cardAttr2 }
           onChange={ onInputChange }
-          labelName="Vida"
+          labelname="Vida"
           max={ maxAttr }
           min={ minAttr }
         />
@@ -92,7 +92,7 @@ export default class Form extends Component {
           name="cardAttr3"
           value={ cardAttr3 }
           onChange={ onInputChange }
-          labelName="Mana"
+          labelname="Mana"
           max={ maxAttr }
           min={ minAttr }
         />
@@ -103,7 +103,7 @@ export default class Form extends Component {
           name="cardImage"
           value={ cardImage }
           onChange={ onInputChange }
-          labelName="Imagem"
+          labelname="Imagem"
           required
         />
 
