@@ -3,6 +3,7 @@ import Card from './components/Card';
 import Form from './components/Form';
 import './components/styles/GeneralStyles.css';
 import './components/styles/App.css';
+import InputFilter from './components/InputFilter';
 
 class App extends React.Component {
   state = {
@@ -39,8 +40,7 @@ class App extends React.Component {
     const minAttr = 0;
     const allAttr = this.greaterThan(maxAttr, minAttr, cardAttr1, cardAttr2, cardAttr3);
 
-    const totalSum = (parseInt(cardAttr1, 10)
-      + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10)) > maxTotalSum;
+    const totalSum = +cardAttr1 + +cardAttr2 + +cardAttr3 > maxTotalSum;
 
     const isSaveButtonDisabled = allAttr || totalSum || isInputsEmpty;
     this.setState({ isSaveButtonDisabled });
@@ -105,21 +105,9 @@ class App extends React.Component {
 
   render() {
     const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-      hasTrunfo,
-      isSaveButtonDisabled,
-      savedCarts,
-      inputFilter,
-      filteredCards,
-      filterRare,
-      trunfoFilter,
+      cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
+      cardRare, cardTrunfo, hasTrunfo, isSaveButtonDisabled, savedCarts,
+      inputFilter, filteredCards, filterRare, trunfoFilter,
     } = this.state;
 
     const defaultProps = {
@@ -138,7 +126,7 @@ class App extends React.Component {
     cardsRender = filterRare === 'todas' ? cardsRender : (
       cardsRender.filter((card) => card.cardRare === filterRare));
     cardsRender = trunfoFilter
-      ? [savedCarts.find((card) => card.cardTrunfo)] : cardsRender;
+      ? savedCarts.filter((card) => card.cardTrunfo) : cardsRender;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -160,36 +148,39 @@ class App extends React.Component {
         <section>
           <h4>Todas as cartas</h4>
           <section>
-            <input
+            <InputFilter
+              type="text"
               value={ inputFilter }
               name="inputFilter"
               onChange={ this.filterCards }
-              data-testid="name-filter"
+              testId="name-filter"
+              id="name-filter"
               disabled={ trunfoFilter }
             />
-            <select
-              data-testid="rare-filter"
-              name="filterRare"
+
+            <InputFilter
+              type="select"
               value={ filterRare }
+              name="filterRare"
               onChange={ this.onInputChange }
+              testId="rare-filter"
               disabled={ trunfoFilter }
             >
               <option value="todas">Todas</option>
               <option value="normal">Normal</option>
               <option value="raro">Raro</option>
               <option value="muito raro">Muito Raro</option>
-            </select>
-            <label htmlFor="trunfoFilter">
-              <input
-                type="checkbox"
-                data-testid="trunfo-filter"
-                id="trunfoFilter"
-                name="trunfoFilter"
-                checked={ trunfoFilter }
-                onChange={ this.onInputChange }
-              />
-              Super Trunfo
-            </label>
+            </InputFilter>
+
+            <InputFilter
+              type="checkbox"
+              name="trunfoFilter"
+              id="trunfoFilter"
+              labelname="Super Trunfo"
+              testId="trunfo-filter"
+              onChange={ this.onInputChange }
+              checked={ trunfoFilter }
+            />
           </section>
           <section className="flex-wrap fullCards">
             {

@@ -1,9 +1,11 @@
 .inputLabel {
+  font-family: Verdana , sans-serif;
   font-size: 16px;
+  font-weight: 700;
   margin-bottom: 15px;
   overflow: hidden;
   position: relative;
-  width: 80%;
+  width: 100%;
 }
 
 .defaultInput {

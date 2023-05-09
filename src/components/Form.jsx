@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import MyInput from './Input';
 import './styles/GeneralStyles.css';
 import './styles/Form.css';
+import './styles/Input.css';
 
 export default class Form extends Component {
   hasCardTrunfo = () => {
@@ -66,36 +67,48 @@ export default class Form extends Component {
           required
         />
 
-        <MyInput
-          type="number"
-          id="attr1-input"
-          name="cardAttr1"
-          value={ cardAttr1 }
-          onChange={ onInputChange }
-          labelname="Força"
-          max={ maxAttr }
-          min={ minAttr }
-        />
-        <MyInput
-          type="number"
-          id="attr2-input"
-          name="cardAttr2"
-          value={ cardAttr2 }
-          onChange={ onInputChange }
-          labelname="Vida"
-          max={ maxAttr }
-          min={ minAttr }
-        />
-        <MyInput
-          type="number"
-          id="attr3-input"
-          name="cardAttr3"
-          value={ cardAttr3 }
-          onChange={ onInputChange }
-          labelname="Mana"
-          max={ maxAttr }
-          min={ minAttr }
-        />
+        <label htmlFor="attr1-input" className="attrLabel">
+          <span className="attrGenericLabel">Força</span>
+          <input
+            type="number"
+            className="attrInput"
+            id="attr1-input"
+            name="cardAttr1"
+            value={ cardAttr1 }
+            onChange={ onInputChange }
+            max={ maxAttr }
+            min={ minAttr }
+            placeholder="Força"
+          />
+        </label>
+        <label htmlFor="attr2-input" className="attrLabel">
+          <span className="attrGenericLabel">Vida</span>
+          <input
+            type="number"
+            className="attrInput"
+            id="attr2-input"
+            name="cardAttr2"
+            value={ cardAttr2 }
+            onChange={ onInputChange }
+            max={ maxAttr }
+            min={ minAttr }
+            placeholder="Vida"
+          />
+        </label>
+        <label htmlFor="attr3-inṕut" className="attrLabel">
+          <span className="attrGenericLabel">Mana</span>
+          <input
+            type="number"
+            className="attrInput"
+            id="attr3-input"
+            name="cardAttr3"
+            value={ cardAttr3 }
+            onChange={ onInputChange }
+            placeholder="Mana"
+            max={ maxAttr }
+            min={ minAttr }
+          />
+        </label>
 
         <MyInput
           type="url"
